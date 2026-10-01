@@ -1,0 +1,840 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Halimat H. Fakorede</title>
+<meta name="description" content="Halimat H. Fakorede. Data analysis and business operations. Lagos, Nigeria." />
+<style>
+  :root{
+    --ink:#0a0a0a; --ink-2:#2e2e2e; --grey:#707070; --grey-2:#a6a6a6;
+    --rule:#000; --line:#dcdcdc; --hair:#ededed; --paper:#fff;
+    --accent:#a8492a;                 /* used inside figures only */
+    --serif:'Iowan Old Style','Palatino Linotype',Palatino,Georgia,'Times New Roman',serif;
+    --sans:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;
+    --mono:ui-monospace,'SF Mono',Menlo,Consolas,'Liberation Mono',monospace;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);
+       font-size:16px;line-height:1.7;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 40px}
+  @media(max-width:720px){.wrap{padding:0 22px}}
+  a{color:inherit;text-decoration:none}
+  p{margin:0}
+  h1,h2,h3{font-family:var(--serif);font-weight:400;letter-spacing:-.012em;line-height:1.08;margin:0}
+  .tag{font:500 10px/1 var(--mono);letter-spacing:.24em;text-transform:uppercase;color:var(--grey)}
+
+  /* NAV with view switch */
+  .nav{position:sticky;top:0;z-index:60;background:rgba(255,255,255,.96);
+       backdrop-filter:blur(10px);border-bottom:1px solid var(--hair)}
+  .nav-in{display:flex;align-items:center;justify-content:space-between;height:66px;gap:20px}
+  .nav .me{font:500 11px/1 var(--mono);letter-spacing:.2em;text-transform:uppercase}
+  .choose{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:42px 0 0}
+  .choose a{border:1px solid var(--line);padding:24px 26px;display:flex;
+            justify-content:space-between;align-items:center;gap:18px;
+            font-family:var(--serif);font-size:22px;letter-spacing:-.02em}
+  .choose .ar{font-size:18px;color:var(--grey-2);font-family:var(--sans)}
+  .choose a:hover{border-color:var(--ink)}
+  .choose a:hover .ar{color:var(--ink)}
+  .choose a.on{border-color:var(--ink);border-width:2px;padding:23px 25px}
+  @media(max-width:720px){.choose{grid-template-columns:1fr;gap:12px}
+    .choose a{padding:19px 22px;font-size:19px}}
+  .hero .sig{font-size:15px;color:var(--grey);margin-top:16px}
+  .view{display:none}
+  .view.show{display:block}
+  .choose a{cursor:pointer}
+  .nav ul{display:flex;gap:26px;list-style:none;margin:0;padding:0;
+          font:500 11px/1 var(--mono);letter-spacing:.14em;text-transform:uppercase}
+  .nav ul a{color:var(--grey);padding-bottom:3px}
+  .nav ul a:hover{color:var(--ink);border-bottom:1px solid var(--ink)}
+  @media(max-width:980px){.nav ul{display:none}}
+
+  /* HERO */
+  .hero{padding:106px 0 0}
+  .hero .tag{display:block;margin-bottom:32px}
+  .hero h1{font-size:clamp(48px,8.8vw,112px);letter-spacing:-.035em;line-height:.94}
+  .hero .lede{font-family:var(--serif);font-size:clamp(20px,2.3vw,27px);line-height:1.45;
+              color:var(--ink-2);max-width:42ch;margin:38px 0 0}
+  .hero .actions{display:flex;flex-wrap:wrap;margin:46px 0 0;
+                 border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+  .hero .actions a{font:500 11px/1 var(--mono);letter-spacing:.16em;text-transform:uppercase;
+                   padding:20px 30px 20px 0;color:var(--grey);border-right:1px solid var(--line);
+                   margin-right:30px;display:flex;align-items:center;gap:9px}
+  .hero .actions a:last-child{border-right:0;margin-right:0}
+  .hero .actions a:hover{color:var(--ink)}
+  .hero .actions i{font-style:normal;font-size:13px}
+
+  /* FIGURES */
+  .figures{display:grid;grid-template-columns:repeat(4,1fr);margin-top:80px}
+  .figure{padding-right:30px}
+  .figure .v{font-family:var(--serif);font-size:clamp(40px,5.2vw,60px);line-height:1;
+             letter-spacing:-.04em;display:block}
+  .figure .k{display:block;font-size:13px;color:var(--grey);line-height:1.5;margin-top:14px;
+             padding-top:14px;border-top:1px solid var(--line);max-width:22ch}
+  @media(max-width:860px){.figures{grid-template-columns:1fr 1fr;gap:34px 0;margin-top:62px}}
+  @media(max-width:480px){.figures{grid-template-columns:1fr}}
+
+  /* CHAPTER */
+  .chapter{margin-top:128px;padding-top:26px;border-top:1.5px solid var(--rule)}
+  .chapter-in{display:grid;grid-template-columns:1fr 1.4fr;gap:40px;align-items:start}
+  .chapter h2{font-size:clamp(34px,5vw,58px);letter-spacing:-.03em}
+  .chapter .intro{font-size:16px;color:var(--grey);line-height:1.7;max-width:52ch;padding-top:8px}
+  @media(max-width:860px){.chapter-in{grid-template-columns:1fr;gap:18px}}
+
+  /* ENTRY */
+  .entry{display:grid;grid-template-columns:1fr 1fr;gap:62px;align-items:center;
+         padding:74px 0;border-bottom:1px solid var(--hair)}
+  .entry:last-of-type{border-bottom:0}
+  .entry.flip .viz{order:2}
+  .viz svg{display:block;width:100%;height:auto}
+  .cap{font:500 11px/1.55 var(--mono);color:var(--grey);margin-top:16px;
+       padding-top:14px;border-top:1px solid var(--line)}
+  .no{font:500 10px/1 var(--mono);letter-spacing:.24em;color:var(--grey-2);display:block;margin-bottom:18px}
+  .entry h3{font-size:clamp(27px,3.2vw,38px);letter-spacing:-.025em;margin-bottom:14px}
+  .one{font-family:var(--serif);font-size:19px;line-height:1.5;color:var(--ink-2);margin-bottom:26px}
+  .stat{border-top:1px solid var(--rule);padding-top:18px;margin-bottom:24px}
+  .stat .big{font-family:var(--serif);font-size:44px;line-height:1;letter-spacing:-.035em;display:block}
+  .stat .exp{font-size:14.5px;color:var(--grey);line-height:1.6;margin-top:10px;max-width:38ch;display:block}
+  .bodyc{font-size:15px;color:var(--grey);line-height:1.7;margin-bottom:26px;max-width:44ch}
+  .bodyc b{color:var(--ink);font-weight:600}
+  .meta{display:flex;flex-wrap:wrap;gap:0 18px;font:500 10.5px/1.9 var(--mono);
+        letter-spacing:.1em;text-transform:uppercase;color:var(--grey-2);margin-bottom:22px}
+  .go{display:flex;gap:26px;font:500 11px/1 var(--mono);letter-spacing:.14em;text-transform:uppercase}
+  .go a{border-bottom:1px solid var(--ink);padding-bottom:5px}
+  .go a:hover{color:var(--grey);border-color:var(--grey)}
+  @media(max-width:860px){.entry{grid-template-columns:1fr;gap:34px;padding:52px 0}
+    .entry.flip .viz{order:0}}
+
+  /* SYSTEM */
+  .system{display:grid;grid-template-columns:1fr 1fr;gap:62px;align-items:center;
+          padding:64px 0;border-bottom:1px solid var(--hair)}
+  .system:last-of-type{border-bottom:0}
+  .system.flip .viz{order:2}
+  .system .viz svg{border:1px solid var(--line)}
+  .system h3{font-size:clamp(23px,2.6vw,31px);letter-spacing:-.02em;margin-bottom:8px}
+  .where{font:500 11px/1 var(--mono);letter-spacing:.12em;text-transform:uppercase;
+         color:var(--grey);margin-bottom:22px;display:block}
+  .system p{font-size:15px;color:var(--grey);line-height:1.7;margin-bottom:24px;max-width:44ch}
+  .system p b{color:var(--ink);font-weight:600}
+  @media(max-width:860px){.system{grid-template-columns:1fr;gap:30px;padding:48px 0}
+    .system.flip .viz{order:0}}
+
+  /* ROLES */
+  .role{display:grid;grid-template-columns:230px 1fr;gap:44px;padding:34px 0;border-top:1px solid var(--hair)}
+  .role:first-child{border-top:1px solid var(--rule)}
+  .role .date{font:500 11px/1.7 var(--mono);letter-spacing:.06em;color:var(--grey)}
+  .role .date em{display:block;font-style:normal;color:var(--grey-2);letter-spacing:.16em;
+                 text-transform:uppercase;font-size:9.5px;margin-top:9px}
+  .role h3{font-size:22px;letter-spacing:-.018em;margin-bottom:4px}
+  .role .at{font-size:14.5px;color:var(--grey);margin-bottom:16px}
+  .role ul{margin:0;padding:0;list-style:none}
+  .role li{font-size:15px;line-height:1.65;padding-left:20px;position:relative;margin-bottom:7px;color:var(--ink-2)}
+  .role li::before{content:"";position:absolute;left:0;top:11px;width:9px;height:1px;background:var(--grey-2)}
+  @media(max-width:860px){.role{grid-template-columns:1fr;gap:14px}}
+
+  /* DUO */
+  .duo{display:grid;grid-template-columns:1fr 1fr;gap:72px;margin-top:56px}
+  .duo h4{font-family:var(--serif);font-weight:400;font-size:25px;letter-spacing:-.02em;
+          margin:0;padding-bottom:16px;border-bottom:1px solid var(--rule)}
+  .hint{font-size:13.5px;color:var(--grey);margin:14px 0 20px;line-height:1.6}
+  .duo ul{list-style:none;margin:0;padding:0}
+  .duo li{font-size:14.5px;padding:9px 0;border-bottom:1px solid var(--hair);color:var(--ink-2)}
+  .duo li:last-child{border-bottom:0}
+  @media(max-width:860px){.duo{grid-template-columns:1fr;gap:44px}}
+  .entryline{display:grid;grid-template-columns:120px 1fr;gap:20px;padding:15px 0;border-bottom:1px solid var(--hair)}
+  .entryline:last-child{border-bottom:0}
+  .entryline .y{font:500 11px/1.8 var(--mono);letter-spacing:.06em;color:var(--grey)}
+  .entryline b{display:block;font-size:15.5px;font-weight:600;line-height:1.45}
+  .entryline span{font-size:13.5px;color:var(--grey);line-height:1.55}
+
+  /* CROSSLINK */
+  .cross{margin-top:96px;border:1px solid var(--ink);padding:34px 38px;
+         display:flex;justify-content:space-between;align-items:center;gap:28px;flex-wrap:wrap}
+  .cross .t{font-family:var(--serif);font-size:23px;letter-spacing:-.02em;margin-bottom:6px}
+  .cross .s{font-size:14.5px;color:var(--grey);max-width:56ch}
+  .cross a.b{font:500 11px/1 var(--mono);letter-spacing:.16em;text-transform:uppercase;
+             border:1px solid var(--ink);padding:16px 24px;white-space:nowrap}
+  .cross a.b:hover{background:var(--hair)}
+
+  /* CONTACT */
+  .contact{margin-top:128px;padding:56px 0 0;border-top:1.5px solid var(--rule)}
+  .contact h2{font-size:clamp(34px,5vw,58px);letter-spacing:-.03em;margin-bottom:34px}
+  .clist{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--line)}
+  .clist a{padding:24px 24px 24px 0;border-right:1px solid var(--line);display:block}
+  .clist a:last-child{border-right:0}
+  .clist .t{font:500 10px/1 var(--mono);letter-spacing:.2em;text-transform:uppercase;
+            color:var(--grey-2);display:block;margin-bottom:10px}
+  .clist .v{font-family:var(--serif);font-size:19px;letter-spacing:-.01em;word-break:break-word}
+  .clist a:hover .v{color:var(--grey)}
+  @media(max-width:720px){.clist{grid-template-columns:1fr}
+    .clist a{border-right:0;border-bottom:1px solid var(--line);padding:20px 0}}
+  footer{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;padding:44px 0;
+         font:500 10.5px/1 var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--grey-2)}
+</style>
+</head>
+<body>
+<nav class="nav">
+  <div class="wrap nav-in">
+    <a class="me" href="#top">Halimat H. Fakorede</a>
+    <ul>
+      <li><a href="#work">Work</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#background">Background</a></li>
+    </ul>
+    <a class="me" href="#contact">Contact</a>
+  </div>
+</nav>
+<main id="top">
+<div class="wrap">
+
+  <header class="hero">
+    <span class="tag">Lagos, Nigeria</span>
+    <h1>Halimat H.<br>Fakorede</h1>
+    <p class="lede">Data analysis and business operations.</p>
+
+    <div class="choose" id="work">
+      <a href="#data" data-view="data" class="on">See my work in data <span class="ar">&rarr;</span></a>
+      <a href="#operations" data-view="ops">See my work in operations <span class="ar">&rarr;</span></a>
+    </div>
+
+    <div class="figures">
+      <div class="figure"><span class="v">128%</span><span class="k">of Nigeria's crop output growth came from more land, not better yields</span></div>
+      <div class="figure"><span class="v">88,545</span><span class="k">market price records cleaned and analyzed</span></div>
+      <div class="figure"><span class="v">244%</span><span class="k">audience growth at Will to Lead, tracked and driven</span></div>
+      <div class="figure"><span class="v">15%</span><span class="k">more student enrolments at Craftudy, with site visits up 20%</span></div>
+    </div>
+  </header>
+
+  <div class="view show" id="view-data">
+  <section class="chapter" id="analysis">
+    <div class="chapter-in">
+      <h2>Analysis</h2>
+      <p class="intro">Everything here runs on data anyone can download, so my numbers can be
+      checked. Each project has the code and a dashboard you can open.</p>
+    </div>
+  </section>
+
+  <article class="entry">
+    <div class="viz">
+      <svg viewBox="0 0 340 230" role="img" aria-label="Cultivated area climbing while yield per hectare falls, 1990 to 2023">
+        <line x1="42" y1="18" x2="42" y2="186" stroke="#dcdcdc"/>
+        <line x1="42" y1="186" x2="326" y2="186" stroke="#0a0a0a" stroke-width="1.2"/>
+        <line x1="42" y1="144" x2="326" y2="144" stroke="#ededed"/>
+        <line x1="42" y1="102" x2="326" y2="102" stroke="#ededed"/>
+        <line x1="42" y1="60" x2="326" y2="60" stroke="#ededed"/>
+        <polyline points="48,168 96,148 144,120 192,92 240,62 288,38 320,24" fill="none" stroke="#a8492a" stroke-width="2.6"/>
+        <polyline points="48,106 96,110 144,116 192,126 240,136 288,148 320,156" fill="none" stroke="#0a0a0a" stroke-width="2.2" stroke-dasharray="1 5" stroke-linecap="round"/>
+        <circle cx="320" cy="24" r="4" fill="#a8492a"/>
+        <circle cx="320" cy="156" r="4" fill="#fff" stroke="#0a0a0a" stroke-width="2"/>
+        <text x="236" y="46" font-size="10.5" font-family="monospace" fill="#a8492a">area planted</text>
+        <text x="222" y="174" font-size="10.5" font-family="monospace" fill="#707070">yield per hectare</text>
+        <text x="48" y="204" font-size="10" font-family="monospace" fill="#a6a6a6">1990</text>
+        <text x="326" y="204" font-size="10" font-family="monospace" fill="#a6a6a6" text-anchor="end">2023</text>
+      </svg>
+      <p class="cap">Two lines, one story. Land goes up, output per hectare goes down.</p>
+    </div>
+    <div>
+      <span class="no">01 / 33 years of Nigerian farming records</span>
+      <h3>Nigeria Yield Gap Explorer</h3>
+      <p class="one">Is Nigeria growing more food because farming got better, or because farmers
+      cleared more land?</p>
+      <div class="stat"><span class="big">128%</span>
+        <span class="exp">of the growth came from clearing more land. The amount harvested from
+        each hectare actually fell. Food grown per person peaked in 2006 and is 10.5% lower now.</span></div>
+      <p class="bodyc">I worked this out two separate ways, using two different methods, to be sure
+      they agreed. They did. I then tested whether more fertilizer would fix it, using farming
+      records from 221 countries. It helps less than you would expect in countries that currently
+      use very little, which is exactly where Nigeria sits. Maize was the one crop that improved
+      through better farming, so it can be done here.</p>
+      <div class="meta"><span>Python</span><span>statsmodels</span><span>scikit-learn</span><span>Streamlit</span></div>
+      <div class="go"><a href="https://nigeria-yield-gap.streamlit.app">Dashboard</a>
+        <a href="https://github.com/HalimatFakorede/nigeria-yield-gap">Code</a></div>
+    </div>
+  </article>
+
+  <article class="entry flip">
+    <div class="viz">
+      <svg viewBox="0 0 340 230" role="img" aria-label="Price series where a raised flag is followed by a spike">
+        <line x1="20" y1="186" x2="326" y2="186" stroke="#0a0a0a" stroke-width="1.2"/>
+        <rect x="136" y="16" width="20" height="170" fill="#f4eae6"/>
+        <rect x="232" y="16" width="20" height="170" fill="#f4eae6"/>
+        <polyline points="26,150 46,144 66,156 86,136 106,148 126,118 146,132 166,84 186,104 206,74 226,92 246,40 266,58 286,48 320,34"
+                  fill="none" stroke="#0a0a0a" stroke-width="2.2"/>
+        <circle cx="146" cy="132" r="5" fill="#fff" stroke="#a8492a" stroke-width="2.4"/>
+        <circle cx="246" cy="40" r="5" fill="#fff" stroke="#a8492a" stroke-width="2.4"/>
+        <text x="146" y="206" font-size="10" font-family="monospace" fill="#a8492a" text-anchor="middle">flag</text>
+        <text x="246" y="206" font-size="10" font-family="monospace" fill="#a8492a" text-anchor="middle">flag</text>
+        <text x="170" y="74" font-size="10" font-family="monospace" fill="#707070">spike</text>
+        <text x="266" y="30" font-size="10" font-family="monospace" fill="#707070">spike</text>
+      </svg>
+      <p class="cap">The flag goes up first, the spike follows. That gap is the whole value.</p>
+    </div>
+    <div>
+      <span class="no">02 / 68 markets across 14 states</span>
+      <h3>Price Early Warning System</h3>
+      <p class="one">Which everyday foods are most likely to jump in price over the next few months?</p>
+      <div class="stat"><span class="big">50%</span>
+        <span class="exp">of the foods it warns about do go on to jump sharply in price. Normally
+        only 29% of months end that way. It tells you what to watch, not what will happen.</span></div>
+      <p class="bodyc">My first version did not work. Instead of adjusting it until the result
+      looked good, I tested each part on its own and found one part was pointing the wrong way.
+      Nigerian food prices usually settle back down after a rise, and I had not allowed for that.
+      I rebuilt it so it only ever learns from what already happened, never from anything it could
+      not have known at the time. The strongest warning sign turned out to be the naira to dollar
+      rate, which I worked out from the price records themselves.</p>
+      <div class="meta"><span>Python</span><span>scikit-learn</span><span>GARCH</span><span>Streamlit</span></div>
+      <div class="go"><a href="https://nigeria-food-price-early-warning.streamlit.app">Dashboard</a>
+        <a href="https://github.com/HalimatFakorede/nigeria-food-price-early-warning">Code</a></div>
+    </div>
+  </article>
+
+  <article class="entry">
+    <div class="viz">
+      <svg viewBox="0 0 340 230" role="img" aria-label="Shortfall bars growing as the disruption size increases">
+        <line x1="20" y1="186" x2="326" y2="186" stroke="#0a0a0a" stroke-width="1.2"/>
+        <rect x="42" y="152" width="52" height="34" fill="#fff" stroke="#0a0a0a" stroke-width="1.2"/>
+        <rect x="118" y="120" width="52" height="66" fill="#f0e2dc" stroke="#0a0a0a" stroke-width="1.2"/>
+        <rect x="194" y="74" width="52" height="112" fill="#d9a892" stroke="#0a0a0a" stroke-width="1.2"/>
+        <rect x="270" y="26" width="52" height="160" fill="#a8492a"/>
+        <text x="68"  y="206" font-size="10.5" font-family="monospace" fill="#a6a6a6" text-anchor="middle">10%</text>
+        <text x="144" y="206" font-size="10.5" font-family="monospace" fill="#a6a6a6" text-anchor="middle">20%</text>
+        <text x="220" y="206" font-size="10.5" font-family="monospace" fill="#707070" text-anchor="middle">35%</text>
+        <text x="296" y="206" font-size="10.5" font-family="monospace" fill="#a8492a" text-anchor="middle">50%</text>
+        <text x="20" y="20" font-size="10" font-family="monospace" fill="#a6a6a6">shortfall</text>
+      </svg>
+      <p class="cap">Drag the slider from a 10% cut to a 50% cut and the shortfall recalculates.</p>
+    </div>
+    <div>
+      <span class="no">03 / Trade and harvest data, worldwide</span>
+      <h3>Import Disruption Risk</h3>
+      <p class="one">If food imports were cut off, which countries would run short first?</p>
+      <div class="stat"><span class="big">35%</span>
+        <span class="exp">A 35% drop in imports would leave Japan short of 5.3 million tonnes of
+        maize. Move the slider to any level and it works out any country and any crop.</span></div>
+      <p class="bodyc">The score puts together how much a country leans on imports, how unsteady
+      those imports are, and how unsteady its own harvests are. I chose how much each of those
+      three counts, rather than calculating it, and I say so on the page instead of presenting it
+      as something measured. It is built so a manager can answer their own question in half a
+      minute instead of waiting on someone.</p>
+      <div class="meta"><span>Python</span><span>Altair</span><span>Parquet</span><span>Streamlit</span></div>
+      <div class="go"><a href="https://food-import-risk-dashboard.streamlit.app">Dashboard</a>
+        <a href="https://github.com/HalimatFakorede/food-import-risk-dashboard">Code</a></div>
+    </div>
+  </article>
+
+  <article class="entry flip">
+    <div class="viz">
+      <svg viewBox="0 0 340 230" role="img" aria-label="Volatility series with a stressed window and a risk band below">
+        <line x1="20" y1="150" x2="326" y2="150" stroke="#0a0a0a" stroke-width="1.2"/>
+        <rect x="132" y="16" width="84" height="134" fill="#f4eae6"/>
+        <polyline points="26,124 42,120 58,128 74,114 90,130 106,106 122,134 138,64 154,32 170,80 186,28 202,72 218,112 234,122 250,114 266,126 282,116 298,124 320,118"
+                  fill="none" stroke="#0a0a0a" stroke-width="2"/>
+        <text x="138" y="28" font-size="10" font-family="monospace" fill="#a8492a">stressed</text>
+        <rect x="20"  y="170" width="112" height="18" fill="#fff" stroke="#dcdcdc"/>
+        <rect x="132" y="170" width="84"  height="18" fill="#a8492a"/>
+        <rect x="216" y="170" width="110" height="18" fill="#fff" stroke="#dcdcdc"/>
+        <text x="76"  y="183" font-size="10" font-family="monospace" fill="#a6a6a6" text-anchor="middle">low</text>
+        <text x="174" y="183" font-size="10" font-family="monospace" fill="#fff" text-anchor="middle">high</text>
+        <text x="271" y="183" font-size="10" font-family="monospace" fill="#a6a6a6" text-anchor="middle">low</text>
+      </svg>
+      <p class="cap">The risk band flips the moment conditions change, and an alert goes out.</p>
+    </div>
+    <div>
+      <span class="no">04 / Daily market monitoring</span>
+      <h3>Market Volatility Risk</h3>
+      <p class="one">Is this market calm or shaky right now, and has that just changed?</p>
+      <div class="stat">
+        <span class="exp">Two separate methods judge the market and both are shown side by side.
+        When two reasonable methods disagree, that disagreement is worth knowing about.</span></div>
+      <p class="bodyc">It watches how sharply prices are moving, sets the market at low, medium or
+      high risk, and raises an alert the moment that changes. It can also be plugged into other
+      software, so another system can check the risk level without a person having to sit and
+      watch a screen.</p>
+      <div class="meta"><span>Python</span><span>FastAPI</span><span>GARCH</span><span>HMM</span></div>
+      <div class="go"><a href="https://volatility-risk-system.streamlit.app">Dashboard</a>
+        <a href="https://github.com/HalimatFakorede/volatility-risk-system">Code</a></div>
+    </div>
+  </article>
+
+  </div>
+
+  <div class="view" id="view-ops">
+  <section class="chapter" id="systems">
+    <div class="chapter-in">
+      <h2>Systems</h2>
+      <p class="intro">What I have been responsible for, what it changed, and the systems I built
+      and still look after.</p>
+    </div>
+  </section>
+
+  <article class="system">
+    <div class="viz">
+      <svg viewBox="0 0 420 210" role="img" aria-label="Vendor coordination across two businesses in one group">
+        <rect x="0" y="0" width="420" height="210" fill="#fff"/>
+        <rect x="150" y="86" width="120" height="40" fill="#a8492a"/>
+        <text x="210" y="103" font-size="9.5" font-family="monospace" fill="#fff" text-anchor="middle">OPERATIONS</text>
+        <text x="210" y="116" font-size="9.5" font-family="monospace" fill="#fff" text-anchor="middle">ASSISTANT</text>
+        <rect x="24" y="26" width="128" height="34" fill="#fff" stroke="#0a0a0a"/>
+        <text x="88" y="47" font-size="9" font-family="monospace" fill="#0a0a0a" text-anchor="middle">CRUX NXTION EVENTS</text>
+        <rect x="24" y="152" width="128" height="34" fill="#fff" stroke="#0a0a0a"/>
+        <text x="88" y="166" font-size="9" font-family="monospace" fill="#0a0a0a" text-anchor="middle">NXTION FOOD</text>
+        <text x="88" y="178" font-size="9" font-family="monospace" fill="#0a0a0a" text-anchor="middle">MARKET</text>
+        <path d="M152 43 C 200 43, 190 86, 205 86" fill="none" stroke="#a6a6a6" stroke-width="1.4"/>
+        <path d="M152 169 C 200 169, 190 126, 205 126" fill="none" stroke="#a6a6a6" stroke-width="1.4"/>
+        <rect x="292" y="20" width="104" height="26" fill="#f7f7f7" stroke="#ededed"/>
+        <text x="344" y="37" font-size="8.5" font-family="monospace" fill="#707070" text-anchor="middle">VENDOR</text>
+        <rect x="292" y="56" width="104" height="26" fill="#f7f7f7" stroke="#ededed"/>
+        <text x="344" y="73" font-size="8.5" font-family="monospace" fill="#707070" text-anchor="middle">VENDOR</text>
+        <rect x="292" y="92" width="104" height="26" fill="#f7f7f7" stroke="#ededed"/>
+        <text x="344" y="109" font-size="8.5" font-family="monospace" fill="#707070" text-anchor="middle">VENDOR</text>
+        <rect x="292" y="128" width="104" height="26" fill="#f7f7f7" stroke="#ededed"/>
+        <text x="344" y="145" font-size="8.5" font-family="monospace" fill="#707070" text-anchor="middle">VENDOR</text>
+        <rect x="292" y="164" width="104" height="26" fill="#f7f7f7" stroke="#ededed"/>
+        <text x="344" y="181" font-size="8.5" font-family="monospace" fill="#707070" text-anchor="middle">VENDOR</text>
+        <line x1="270" y1="106" x2="292" y2="33" stroke="#dcdcdc"/>
+        <line x1="270" y1="106" x2="292" y2="69" stroke="#dcdcdc"/>
+        <line x1="270" y1="106" x2="292" y2="105" stroke="#dcdcdc"/>
+        <line x1="270" y1="106" x2="292" y2="141" stroke="#dcdcdc"/>
+        <line x1="270" y1="106" x2="292" y2="177" stroke="#dcdcdc"/>
+      </svg></div>
+    <div>
+      <span class="no">01 / Two businesses at once</span>
+      <h3>Working across the group</h3>
+      <span class="where">Crux Nxtion Group, United Kingdom</span>
+      <p>Crux Nxtion Events and Nxtion Food Market are two separate businesses under the same
+      group, and I worked across both. Most of my time went on the suppliers: placing orders,
+      answering their questions, and chasing anything that had gone quiet.</p>
+      <div class="meta"><span>Supplier communication</span><span>Coordination</span><span>Remote, UK</span></div>
+    </div>
+  </article>
+
+  <article class="system flip">
+    <div class="viz">
+      <svg viewBox="0 0 420 210" role="img" aria-label="Food market product listings being kept up to date">
+        <rect x="0" y="0" width="420" height="210" fill="#fff"/>
+        <rect x="0" y="0" width="420" height="28" fill="#f7f7f7"/>
+        <line x1="0" y1="28" x2="420" y2="28" stroke="#ededed"/>
+        <circle cx="18" cy="14" r="3.4" fill="#dcdcdc"/><circle cx="30" cy="14" r="3.4" fill="#dcdcdc"/><circle cx="42" cy="14" r="3.4" fill="#dcdcdc"/>
+        <rect x="58" y="7" width="210" height="14" fill="#fff" stroke="#ededed"/>
+        <text x="65" y="17" font-size="8.5" font-family="monospace" fill="#a6a6a6">nxtion food market</text>
+        <rect x="24" y="44" width="150" height="10" fill="#0a0a0a"/>
+        <rect x="24" y="62" width="96" height="5" fill="#dcdcdc"/>
+        <rect x="24" y="82" width="372" height="30" fill="#fff" stroke="#ededed"/>
+        <rect x="34" y="89" width="16" height="16" fill="#f0e2dc"/>
+        <rect x="60" y="92" width="120" height="5" fill="#0a0a0a"/>
+        <rect x="60" y="101" width="74" height="4" fill="#dcdcdc"/>
+        <text x="250" y="101" font-size="9" font-family="monospace" fill="#707070">IN STOCK</text>
+        <rect x="330" y="88" width="56" height="18" fill="#a8492a"/>
+        <text x="338" y="100" font-size="8" font-family="monospace" fill="#fff">UPDATED</text>
+        <rect x="24" y="118" width="372" height="30" fill="#fff" stroke="#ededed"/>
+        <rect x="34" y="125" width="16" height="16" fill="#f0e2dc"/>
+        <rect x="60" y="128" width="96" height="5" fill="#0a0a0a"/>
+        <rect x="60" y="137" width="110" height="4" fill="#dcdcdc"/>
+        <text x="250" y="137" font-size="9" font-family="monospace" fill="#707070">LOW</text>
+        <rect x="330" y="124" width="56" height="18" fill="#a8492a"/>
+        <text x="338" y="136" font-size="8" font-family="monospace" fill="#fff">UPDATED</text>
+        <rect x="24" y="154" width="372" height="30" fill="#fff" stroke="#ededed"/>
+        <rect x="34" y="161" width="16" height="16" fill="#f0e2dc"/>
+        <rect x="60" y="164" width="136" height="5" fill="#0a0a0a"/>
+        <rect x="60" y="173" width="60" height="4" fill="#dcdcdc"/>
+        <text x="250" y="173" font-size="9" font-family="monospace" fill="#707070">IN STOCK</text>
+        <rect x="330" y="160" width="56" height="18" fill="#dcdcdc"/>
+      </svg></div>
+    <div>
+      <span class="no">02 / Keeping the shop right</span>
+      <h3>The food market website</h3>
+      <span class="where">Nxtion Food Market</span>
+      <p>I looked after the product information on the website: what each item is, what it costs,
+      and whether it is in stock. When that is wrong a customer orders something that is not
+      there, so it has to be right every day.</p>
+      <div class="meta"><span>Product information</span><span>Website upkeep</span><span>Accuracy</span></div>
+    </div>
+  </article>
+
+  <article class="system">
+    <div class="viz">
+      <svg viewBox="0 0 420 210" role="img" aria-label="Sign up funnel showing where students dropped off, and enrolment rising after">
+        <text x="24" y="26" font-size="9.5" font-family="monospace" fill="#a6a6a6">WHERE PEOPLE DROPPED OFF</text>
+        <rect x="24" y="38" width="196" height="24" fill="#0a0a0a"/>
+        <text x="32" y="54" font-size="9.5" font-family="monospace" fill="#fff">VISITED</text>
+        <rect x="24" y="68" width="150" height="24" fill="#5c5c5c"/>
+        <text x="32" y="84" font-size="9.5" font-family="monospace" fill="#fff">STARTED SIGN UP</text>
+        <rect x="24" y="98" width="96" height="24" fill="#bdbdbd"/>
+        <text x="32" y="114" font-size="9.5" font-family="monospace" fill="#fff">FINISHED</text>
+        <rect x="24" y="128" width="72" height="24" fill="#a8492a"/>
+        <text x="32" y="144" font-size="9.5" font-family="monospace" fill="#fff">ENROLLED</text>
+        <line x1="150" y1="68" x2="150" y2="122" stroke="#a8492a" stroke-dasharray="3 3"/>
+        <text x="158" y="86" font-size="9" font-family="monospace" fill="#a8492a">the gap</text>
+        <text x="158" y="99" font-size="9" font-family="monospace" fill="#a8492a">I found</text>
+        <line x1="24" y1="168" x2="396" y2="168" stroke="#ededed"/>
+        <text x="24" y="186" font-size="10.5" font-family="monospace" fill="#707070">ENROLMENT +15%</text>
+        <text x="200" y="186" font-size="10.5" font-family="monospace" fill="#707070">SITE VISITS +20%</text>
+      </svg></div>
+    <div>
+      <span class="no">03 / Working out what the numbers meant</span>
+      <h3>Finding where students were dropping off</h3>
+      <span class="where">Craftudy, online learning platform</span>
+      <p>I went through the sign up numbers to trace where people gave up between landing on the
+      site and finishing a sign up, and which channels were actually bringing students in rather
+      than just traffic.</p>
+      <p style="margin-top:-8px">Enrolment went up 15% and site visits went up 20% over the period.</p>
+      <div class="meta"><span>Sign up analysis</span><span>Drop off</span><span>Channel performance</span></div>
+    </div>
+  </article>
+
+  <article class="system flip">
+    <div class="viz">
+      <svg viewBox="0 0 420 210" role="img" aria-label="Audience growing to 244 percent over time">
+        <line x1="40" y1="24" x2="40" y2="168" stroke="#dcdcdc"/>
+        <line x1="40" y1="168" x2="396" y2="168" stroke="#0a0a0a" stroke-width="1.2"/>
+        <line x1="40" y1="128" x2="396" y2="128" stroke="#ededed"/>
+        <line x1="40" y1="88" x2="396" y2="88" stroke="#ededed"/>
+        <line x1="40" y1="48" x2="396" y2="48" stroke="#ededed"/>
+        <polyline points="48,156 96,150 144,140 192,118 240,94 288,72 336,50 390,32"
+                  fill="none" stroke="#a8492a" stroke-width="2.6"/>
+        <circle cx="390" cy="32" r="4.5" fill="#a8492a"/>
+        <text x="300" y="24" font-size="13" font-family="monospace" fill="#a8492a">+244%</text>
+        <g font-family="monospace" font-size="9" fill="#a6a6a6">
+          <text x="48" y="186">JUN 2022</text>
+          <text x="396" y="186" text-anchor="end">FEB 2024</text>
+        </g>
+        <text x="48" y="140" font-size="9" font-family="monospace" fill="#707070">tracking set up</text>
+        <line x1="96" y1="146" x2="96" y2="168" stroke="#dcdcdc" stroke-dasharray="3 3"/>
+      </svg></div>
+    <div>
+      <span class="no">04 / Keeping a team to deadline</span>
+      <h3>Running media operations for a UK organization</h3>
+      <span class="where">Will to Lead, United Kingdom</span>
+      <p>I coordinated the people making the content. Briefing them on what was needed, chasing
+      what had not come in, and keeping everyone to the deadline. Nobody was in the same room and
+      most were not in the same country.</p>
+      <p style="margin-top:-8px">The audience grew by 244% over the period. I also supported the
+      founder directly with her diary, documents and inbox.</p>
+      <div class="meta"><span>Coordination</span><span>Deadlines</span><span>Remote team</span><span>Executive support</span></div>
+    </div>
+  </article>
+
+  <article class="system">
+    <div class="viz">
+      <svg viewBox="0 0 420 210" role="img" aria-label="Online store with product grid and four wholesale price tiers">
+        <rect x="0" y="0" width="420" height="210" fill="#fff"/>
+        <rect x="0" y="0" width="420" height="28" fill="#f7f7f7"/>
+        <line x1="0" y1="28" x2="420" y2="28" stroke="#ededed"/>
+        <circle cx="18" cy="14" r="3.4" fill="#dcdcdc"/><circle cx="30" cy="14" r="3.4" fill="#dcdcdc"/><circle cx="42" cy="14" r="3.4" fill="#dcdcdc"/>
+        <rect x="58" y="7" width="216" height="14" fill="#fff" stroke="#ededed"/>
+        <text x="65" y="17" font-size="8.5" font-family="monospace" fill="#a6a6a6">opulentceramics.com</text>
+        <rect x="370" y="7" width="34" height="14" fill="#0a0a0a"/>
+        <text x="377" y="17" font-size="7.5" font-family="monospace" fill="#fff">CART</text>
+        <rect x="24" y="44" width="140" height="10" fill="#0a0a0a"/>
+        <rect x="24" y="62" width="96" height="5" fill="#dcdcdc"/>
+        <rect x="24" y="80" width="88" height="72" fill="#fff" stroke="#a8492a" stroke-width="1.4"/>
+        <rect x="34" y="90" width="68" height="36" fill="#f0e2dc"/>
+        <rect x="34" y="132" width="40" height="5" fill="#dcdcdc"/>
+        <text x="34" y="147" font-size="9" font-family="monospace" fill="#a8492a">N3,000</text>
+        <rect x="120" y="80" width="88" height="72" fill="#fff" stroke="#ededed"/>
+        <rect x="130" y="90" width="68" height="36" fill="#f5f5f5"/>
+        <rect x="130" y="132" width="46" height="5" fill="#dcdcdc"/>
+        <text x="130" y="147" font-size="9" font-family="monospace" fill="#a6a6a6">N17,400</text>
+        <rect x="216" y="80" width="88" height="72" fill="#fff" stroke="#ededed"/>
+        <rect x="226" y="90" width="68" height="36" fill="#f5f5f5"/>
+        <rect x="226" y="132" width="44" height="5" fill="#dcdcdc"/>
+        <text x="226" y="147" font-size="9" font-family="monospace" fill="#a6a6a6">N65,000</text>
+        <rect x="312" y="80" width="88" height="72" fill="#fff" stroke="#ededed"/>
+        <rect x="322" y="90" width="68" height="36" fill="#f5f5f5"/>
+        <rect x="322" y="132" width="52" height="5" fill="#dcdcdc"/>
+        <text x="322" y="147" font-size="9" font-family="monospace" fill="#a6a6a6">N250,000</text>
+        <rect x="24" y="170" width="176" height="20" fill="#0a0a0a"/>
+        <text x="34" y="184" font-size="9" font-family="monospace" fill="#fff">BECOME A TRADE PARTNER</text>
+      </svg></div>
+    <div>
+      <span class="no">05 / Build</span>
+      <h3>Online store</h3>
+      <span class="where">opulentceramics.com</span>
+      <p>Built and maintained for a Nigerian craft clay brand. The product range, four wholesale
+      price levels from a single 800g pack up to 100 pack orders, the checkout, a route for shops
+      that want to stock and resell it, and the photo gallery that shows the work.</p>
+      <div class="meta"><span>WordPress</span><span>WooCommerce</span><span>Tiered pricing</span></div>
+      <div class="go"><a href="https://opulentceramics.com">Visit</a></div>
+    </div>
+  </article>
+
+  <article class="system flip">
+    <div class="viz">
+      <svg viewBox="0 0 420 210" role="img" aria-label="Personal brand site with podcast, book, events and newsletter">
+        <rect x="0" y="0" width="420" height="210" fill="#fff"/>
+        <rect x="0" y="0" width="420" height="28" fill="#f7f7f7"/>
+        <line x1="0" y1="28" x2="420" y2="28" stroke="#ededed"/>
+        <circle cx="18" cy="14" r="3.4" fill="#dcdcdc"/><circle cx="30" cy="14" r="3.4" fill="#dcdcdc"/><circle cx="42" cy="14" r="3.4" fill="#dcdcdc"/>
+        <rect x="58" y="7" width="230" height="14" fill="#fff" stroke="#ededed"/>
+        <text x="65" y="17" font-size="8.5" font-family="monospace" fill="#a6a6a6">funmilolabellonaire.com</text>
+        <rect x="24" y="44" width="184" height="70" fill="#f0e2dc"/>
+        <circle cx="116" cy="79" r="19" fill="#fff" stroke="#a8492a" stroke-width="1.6"/>
+        <polygon points="110,71 110,87 124,79" fill="#a8492a"/>
+        <rect x="220" y="44" width="176" height="12" fill="#0a0a0a"/>
+        <rect x="220" y="64" width="150" height="5" fill="#dcdcdc"/>
+        <rect x="220" y="76" width="168" height="5" fill="#dcdcdc"/>
+        <rect x="220" y="88" width="112" height="5" fill="#dcdcdc"/>
+        <rect x="220" y="100" width="70" height="15" fill="#0a0a0a"/>
+        <text x="227" y="111" font-size="7.5" font-family="monospace" fill="#fff">LISTEN</text>
+        <rect x="24" y="130" width="120" height="58" fill="#fff" stroke="#ededed"/>
+        <rect x="34" y="140" width="28" height="38" fill="#a8492a"/>
+        <rect x="70" y="140" width="60" height="5" fill="#0a0a0a"/>
+        <rect x="70" y="152" width="44" height="4" fill="#dcdcdc"/>
+        <text x="70" y="174" font-size="7.5" font-family="monospace" fill="#a6a6a6">THE BOOK</text>
+        <rect x="152" y="130" width="120" height="58" fill="#fff" stroke="#ededed"/>
+        <rect x="162" y="140" width="60" height="5" fill="#0a0a0a"/>
+        <rect x="162" y="152" width="90" height="4" fill="#dcdcdc"/>
+        <rect x="162" y="162" width="72" height="4" fill="#dcdcdc"/>
+        <text x="162" y="180" font-size="7.5" font-family="monospace" fill="#a6a6a6">EVENTS</text>
+        <rect x="280" y="130" width="116" height="58" fill="#fff" stroke="#ededed"/>
+        <rect x="290" y="140" width="60" height="5" fill="#0a0a0a"/>
+        <rect x="290" y="152" width="86" height="4" fill="#dcdcdc"/>
+        <rect x="290" y="164" width="64" height="15" fill="#0a0a0a"/>
+        <text x="297" y="175" font-size="7" font-family="monospace" fill="#fff">SUBSCRIBE</text>
+      </svg></div>
+    <div>
+      <span class="no">06 / Build</span>
+      <h3>Personal brand platform</h3>
+      <span class="where">funmilolabellonaire.com</span>
+      <p>Built from scratch and maintained for an entrepreneur and author. Her story, her podcast
+      which also goes out on YouTube and Spotify, her book, an events page, a monthly letter and a
+      shop. All in one place instead of spread across different sites.</p>
+      <div class="meta"><span>WordPress</span><span>Multi page build</span><span>Podcast</span></div>
+      <div class="go"><a href="https://funmilolabellonaire.com">Visit</a></div>
+    </div>
+  </article>
+
+  <article class="system">
+    <div class="viz">
+      <svg viewBox="0 0 420 210" role="img" aria-label="Two academies where I taught operations and virtual assistance">
+        <rect x="24" y="30" width="170" height="150" fill="#fff" stroke="#0a0a0a"/>
+        <rect x="24" y="30" width="170" height="30" fill="#a8492a"/>
+        <text x="36" y="50" font-size="9.5" font-family="monospace" fill="#fff">CIRVEE ACADEMY</text>
+        <text x="36" y="80" font-size="9.5" font-family="monospace" fill="#0a0a0a">VIRTUAL ASSISTANCE</text>
+        <g fill="#dcdcdc">
+          <circle cx="44" cy="106" r="8"/><circle cx="70" cy="106" r="8"/><circle cx="96" cy="106" r="8"/>
+          <circle cx="122" cy="106" r="8"/><circle cx="148" cy="106" r="8"/><circle cx="174" cy="106" r="8"/>
+          <circle cx="44" cy="132" r="8"/><circle cx="70" cy="132" r="8"/><circle cx="96" cy="132" r="8"/>
+          <circle cx="122" cy="132" r="8"/><circle cx="148" cy="132" r="8"/><circle cx="174" cy="132" r="8"/>
+        </g>
+        <text x="36" y="168" font-size="9" font-family="monospace" fill="#a6a6a6">NOV 2024 - JUL 2025</text>
+        <rect x="226" y="30" width="170" height="150" fill="#fff" stroke="#0a0a0a"/>
+        <rect x="226" y="30" width="170" height="30" fill="#a8492a"/>
+        <text x="238" y="50" font-size="9.5" font-family="monospace" fill="#fff">NEXT SWITCH ACADEMY</text>
+        <text x="238" y="80" font-size="9.5" font-family="monospace" fill="#0a0a0a">BUSINESS OPERATIONS</text>
+        <g fill="#dcdcdc">
+          <circle cx="246" cy="106" r="8"/><circle cx="272" cy="106" r="8"/><circle cx="298" cy="106" r="8"/>
+          <circle cx="324" cy="106" r="8"/><circle cx="350" cy="106" r="8"/><circle cx="376" cy="106" r="8"/>
+          <circle cx="246" cy="132" r="8"/><circle cx="272" cy="132" r="8"/><circle cx="298" cy="132" r="8"/>
+          <circle cx="324" cy="132" r="8"/><circle cx="350" cy="132" r="8"/><circle cx="376" cy="132" r="8"/>
+        </g>
+        <text x="238" y="168" font-size="9" font-family="monospace" fill="#a6a6a6">JUN 2025 - JUN 2026</text>
+      </svg></div>
+    <div>
+      <span class="no">07 / Teaching it</span>
+      <h3>Training other people to do this work</h3>
+      <span class="where">Cirvee Academy and Next Switch Academy</span>
+      <p>Two academies brought me in to teach the work I do. At Cirvee I taught virtual assistance,
+      and at Next Switch I taught remote business operations. Between them I covered setting up a
+      process, keeping records, reporting, the tools teams use, and how to work well with people
+      you never meet in person.</p>
+      <p style="margin-top:-8px">I taught both while still doing the job myself, so nothing I
+      taught was out of date.</p>
+      <div class="meta"><span>Training</span><span>Curriculum</span><span>Process</span><span>Remote working</span></div>
+    </div>
+  </article>
+
+  </div>
+
+  <section class="chapter" id="experience">
+    <div class="chapter-in">
+      <h2>Experience</h2>
+    </div>
+  </section>
+  <div style="margin-top:56px">
+    <div class="role">
+      <div class="date">Jul 2024 &ndash; Jul 2026<em>Remote, UK</em></div>
+      <div>
+        <h3>Operations Assistant</h3>
+        <p class="at">Crux Nxtion Group of Companies, United Kingdom</p>
+        <ul>
+          <li>Supported day to day operations across two businesses in the group, Crux Nxtion Events and Nxtion Food Market.</li>
+          <li>Kept product details and listings current on the Nxtion Food Market website.</li>
+          <li>Managed vendor communications for both businesses, keeping orders, queries and follow ups moving.</li>
+          <li>Coordinated between the UK team and people working in other time zones.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="role">
+      <div class="date">Jun 2025 &ndash; Jun 2026<em>Contract</em></div>
+      <div>
+        <h3>Tutor, Remote Business Operations</h3>
+        <p class="at">Next Switch Academy</p>
+        <ul>
+          <li>Taught remote business operations to adult students moving into the field.</li>
+          <li>Covered process setup, reporting, tools, and the working habits remote employers expect.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="role">
+      <div class="date">Nov 2024 &ndash; Jul 2025<em>Contract</em></div>
+      <div>
+        <h3>Tutor, Virtual Assistance</h3>
+        <p class="at">Cirvee Academy, Ibadan</p>
+        <ul>
+          <li>Taught the practical side of the role: scheduling, inbox and document handling, client communication and reporting.</li>
+          <li>Ran the programme alongside my own operations work, which kept the material current.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="role">
+      <div class="date">Feb 2024 &ndash; present<em>Contract</em></div>
+      <div>
+        <h3>Consultant, Operations and Data Systems</h3>
+        <p class="at">Opulent House of Ceramics Ltd, Nigeria</p>
+        <ul>
+          <li>Brought structure to how the business runs, setting up the routines and records it did not have before.</li>
+          <li>Built and maintain the online store, including the product range, wholesale price levels and checkout.</li>
+          <li>Set up the photo gallery on the site that shows the work.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="role">
+      <div class="date">Apr 2024 &ndash; Jun 2025<em>Part time</em></div>
+      <div>
+        <h3>Operations Assistant</h3>
+        <p class="at">Craftudy, online learning platform</p>
+        <ul>
+          <li>Enrolment up 15% and site traffic up 20% over the period.</li>
+          <li>Went through the sign up data to find where people were dropping off and which channels actually converted.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="role">
+      <div class="date">Jun 2022 &ndash; Feb 2024<em>Remote, UK</em></div>
+      <div>
+        <h3>Head of Media Operations and Virtual Assistant</h3>
+        <p class="at">Will to Lead, United Kingdom</p>
+        <ul>
+          <li>Coordinated the contributors producing the content, briefing them, chasing what was outstanding and holding the deadline.</li>
+          <li>Worked with a team spread across different countries, none of them in the same place.</li>
+          <li>The audience grew by 244% over the period.</li>
+          <li>Supported the founder with scheduling, documents and inbox management.</li>
+        </ul>
+      </div>
+    </div></div>
+
+
+  <section class="chapter" id="skills">
+    <div class="chapter-in">
+      <h2>Skills</h2>
+      <p class="intro">What I actually use.</p>
+    </div>
+  </section>
+  <div class="duo">
+    <div>
+      <h4>Analysis</h4>
+      <p class="hint">What I use to get to a number, and to be sure it is right before I report it.</p>
+      <ul>
+      <li>Python, pandas, NumPy</li>
+      <li>scikit-learn, statsmodels, arch</li>
+      <li>SQL</li>
+      <li>Regression, classification, clustering</li>
+      <li>Time series, forecasting, volatility</li>
+      <li>Scenario and what-if modelling</li>
+      <li>Holdout and walk forward validation</li>
+      <li>Benchmarking against a naive baseline</li>
+      <li>Streamlit dashboards, FastAPI endpoints</li>
+      <li>Git and GitHub</li></ul>
+    </div>
+    <div>
+      <h4>Operations</h4>
+      <p class="hint">What I use to build and run the systems a business works from.</p>
+      <ul>
+      <li>Vendor and supplier communication</li>
+      <li>Product listings and catalogue upkeep</li>
+      <li>Reporting and performance tracking</li>
+      <li>Records, routines and process documentation</li>
+      <li>Advanced Excel, pivots and lookups</li>
+      <li>WordPress and WooCommerce builds</li>
+      <li>Google Workspace</li>
+      <li>Diary, inbox and document management</li>
+      <li>Cross time zone coordination</li>
+      <li>Training and onboarding others</li></ul>
+    </div>
+  </div>
+
+
+
+  <section class="chapter" id="background">
+    <div class="chapter-in">
+      <h2>Background</h2>
+      <p class="intro">Where I studied and what I have qualified in since.</p>
+    </div>
+  </section>
+
+  <div class="duo">
+    <div>
+      <h4>Study</h4>
+      <div style="margin-top:22px">
+        <div class="entryline"><span class="y">2023</span><div><b>Bachelor of Agriculture, Second Class Upper</b><span>University of Ilorin. CGPA 3.72 out of 5.00.</span></div></div>
+        <div class="entryline"><span class="y">2026</span><div><b>Data Scientist Certification</b><span>DataCamp</span></div></div>
+        <div class="entryline"><span class="y">2025</span><div><b>Applied Data Science Lab</b><span>WorldQuant University</span></div></div>
+        <div class="entryline"><span class="y">In progress</span><div><b>Deep Learning Fundamentals Lab</b><span>WorldQuant University</span></div></div>
+        <div class="entryline"><span class="y">2022</span><div><b>Virtual Assistant Course</b><span>ALX</span></div></div>
+      </div>
+    </div>
+    <div>
+      <h4>Service</h4>
+      <div style="margin-top:22px">
+        <div class="entryline"><span class="y">2024 &ndash; now</span><div><b>Founder, The Growth People Community</b><span>A learning community for early career people. Wrote and teach the Digital Work Ready course that came out of it.</span></div></div>
+        <div class="entryline"><span class="y">2022 &ndash; 2023</span><div><b>General Secretary, Winners Campus Fellowship</b><span>University of Ilorin. Records, minutes, member coordination and weekly programmes.</span></div></div>
+        <div class="entryline"><span class="y">NYSC</span><div><b>State Assistant General Secretary, NCCF</b><span>Cross River State. Records and member coordination across the state.</span></div></div>
+      </div>
+    </div>
+  </div>
+
+  <section class="contact" id="contact">
+    <h2>Get in touch</h2>
+    <div class="clist">
+      <a href="/cdn-cgi/l/email-protection#2640474d49544342434e474a4f4b47521766414b474f4a0845494b"><span class="t">Email</span><span class="v"><span class="__cf_email__" data-cfemail="2147404a4e5344454449404d484c40551061464c40484d0f424e4c">[email&#160;protected]</span></span></a>
+      <a href="https://linkedin.com/in/halimatfakorede"><span class="t">LinkedIn</span><span class="v">/in/halimatfakorede</span></a>
+      <a href="https://github.com/HalimatFakorede"><span class="t">GitHub</span><span class="v">@HalimatFakorede</span></a>
+    </div>
+  </section>
+
+  <footer>
+    <span>Halimat H. Fakorede</span>
+    <span>Lagos, Nigeria &nbsp;/&nbsp; Open to remote and relocation</span>
+  </footer>
+
+</div>
+</main>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+(function(){
+  var views = {data: document.getElementById('view-data'),
+               ops:  document.getElementById('view-ops')};
+  var btns  = document.querySelectorAll('.choose a[data-view]');
+  function show(which, push){
+    if(!views[which]) which = 'data';
+    for(var k in views){ views[k].classList.toggle('show', k === which); }
+    btns.forEach(function(b){ b.classList.toggle('on', b.getAttribute('data-view') === which); });
+    if(push){ history.replaceState(null, '', which === 'ops' ? '#operations' : '#data'); }
+  }
+  btns.forEach(function(b){
+    b.addEventListener('click', function(e){
+      e.preventDefault();
+      show(b.getAttribute('data-view'), true);
+      document.getElementById('work').scrollIntoView({behavior:'smooth', block:'start'});
+    });
+  });
+  var h = (location.hash || '').toLowerCase();
+  show(h.indexOf('op') > -1 ? 'ops' : 'data', false);
+})();
+</script>
+
+</body>
+</html>

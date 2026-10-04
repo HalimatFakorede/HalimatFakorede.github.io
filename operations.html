@@ -1,5 +1,613 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8">
-<title>Halimat H. Fakorede, Operations</title>
-<meta http-equiv="refresh" content="0; url=index.html#operations">
-<link rel="canonical" href="index.html">
-</head><body><p>Taking you to <a href="index.html#operations">the operations work</a>.</p></body></html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Halimat H. Fakorede, Business Operations</title>
+<meta name="description" content="Halimat H. Fakorede. Business operations. Supplier coordination, product information, reporting, and WordPress and WooCommerce builds. Lagos, Nigeria." />
+<style>
+  :root{
+    --ink:#0a0a0a; --ink-2:#2e2e2e; --grey:#707070; --grey-2:#a6a6a6;
+    --rule:#000; --line:#dcdcdc; --hair:#ededed; --paper:#fff;
+    --accent:#a8492a;                 /* used inside figures only */
+    --serif:'Iowan Old Style','Palatino Linotype',Palatino,Georgia,'Times New Roman',serif;
+    --sans:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;
+    --mono:ui-monospace,'SF Mono',Menlo,Consolas,'Liberation Mono',monospace;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);
+       font-size:16px;line-height:1.7;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 40px}
+  .go{display:flex;flex-wrap:wrap;gap:0 28px}
+  @media(max-width:720px){.wrap{padding:0 22px}}
+  a{color:inherit;text-decoration:none}
+  p{margin:0}
+  h1,h2,h3{font-family:var(--serif);font-weight:400;letter-spacing:-.012em;line-height:1.08;margin:0}
+  .tag{font:500 10px/1 var(--mono);letter-spacing:.24em;text-transform:uppercase;color:var(--grey)}
+
+  /* NAV with view switch */
+  .nav{position:sticky;top:0;z-index:60;background:rgba(255,255,255,.96);
+       backdrop-filter:blur(10px);border-bottom:1px solid var(--hair)}
+  .nav-in{display:flex;align-items:center;justify-content:space-between;height:66px;gap:20px}
+  .nav .me{font:500 11px/1 var(--mono);letter-spacing:.2em;text-transform:uppercase}
+  .choose{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:42px 0 0}
+  .choose a{border:1px solid var(--line);padding:24px 26px;display:flex;
+            justify-content:space-between;align-items:center;gap:18px;
+            font-family:var(--serif);font-size:22px;letter-spacing:-.02em}
+  .choose .ar{font-size:18px;color:var(--grey-2);font-family:var(--sans)}
+  .choose a:hover{border-color:var(--ink)}
+  .choose a:hover .ar{color:var(--ink)}
+  .choose a.on{border-color:var(--ink);border-width:2px;padding:23px 25px}
+  @media(max-width:720px){.choose{grid-template-columns:1fr;gap:12px}
+    .choose a{padding:19px 22px;font-size:19px}}
+  .hero .sig{font-size:15px;color:var(--grey);margin-top:16px}
+  .view{display:none}
+  .view.show{display:block}
+  .choose a{cursor:pointer}
+  .nav ul{display:flex;gap:26px;list-style:none;margin:0;padding:0;
+          font:500 11px/1 var(--mono);letter-spacing:.14em;text-transform:uppercase}
+  .nav ul a{color:var(--grey);padding-bottom:3px}
+  .nav ul a:hover{color:var(--ink);border-bottom:1px solid var(--ink)}
+  @media(max-width:980px){.nav ul{display:none}}
+
+  /* HERO */
+  .hero{padding:112px 0 0;position:relative}
+  .hero .tag{display:block;margin-bottom:30px}
+  .hero-top{display:block;padding-right:260px}
+  @media(max-width:860px){.hero-top{padding-right:0}}
+  .hero h1{font-size:clamp(46px,8.2vw,104px);letter-spacing:-.035em;line-height:.94}
+  .hero .sub{font-family:var(--serif);font-size:clamp(21px,2.5vw,30px);line-height:1.3;
+             letter-spacing:-.015em;color:var(--ink);margin:30px 0 0;max-width:24ch}
+  .hero .lede{font-size:clamp(15px,1.45vw,17px);line-height:1.72;
+              color:var(--ink-2);max-width:52ch;margin:22px 0 0}
+  .portrait{position:absolute;top:100px;right:0;width:214px;margin:0;
+            border:1px solid var(--line);padding:11px}
+  .portrait img{width:100%;height:192px;display:block;object-fit:cover;object-position:50% 32%;
+                filter:grayscale(1) contrast(1.04)}
+  .portrait figcaption{display:block;font:500 9px/1.4 var(--mono);letter-spacing:.22em;
+                       text-transform:uppercase;color:var(--grey);margin-top:11px;
+                       padding-top:10px;border-top:1px solid var(--line)}
+  @media(max-width:980px){.portrait{width:170px}.portrait img{height:150px}
+                          .hero-top{padding-right:206px}}
+  @media(max-width:860px){.portrait{position:static;width:150px;margin:0 0 36px}
+                          .portrait img{height:132px}}
+  .hero .actions{display:flex;flex-wrap:wrap;gap:0;margin:54px 0 0;
+                 border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+  .hero .actions a{font:500 11px/1 var(--mono);letter-spacing:.16em;text-transform:uppercase;
+                   padding:22px 34px 22px 0;color:var(--grey);border-right:1px solid var(--line);
+                   margin-right:34px;display:flex;align-items:center;gap:10px}
+  .hero .actions a:last-child{border-right:0;margin-right:0;padding-right:0}
+  .hero .actions a:hover{color:var(--ink)}
+  .hero .actions a.on{color:var(--ink)}
+  .hero .actions a.on::before{content:"";width:6px;height:6px;background:var(--ink);
+                              border-radius:50%;display:inline-block}
+  .hero .actions i{font-style:normal;font-size:13px}
+
+  /* FIGURES */
+  .figures{display:grid;grid-template-columns:repeat(4,1fr);margin-top:80px}
+  .figure{padding-right:30px}
+  .figure .v{font-family:var(--serif);font-size:clamp(40px,5.2vw,60px);line-height:1;
+             letter-spacing:-.04em;display:block}
+  .figure .k{display:block;font-size:13px;color:var(--grey);line-height:1.5;margin-top:14px;
+             padding-top:14px;border-top:1px solid var(--line);max-width:22ch}
+  @media(max-width:860px){.figures{grid-template-columns:1fr 1fr;gap:34px 0;margin-top:62px}}
+  @media(max-width:480px){.figures{grid-template-columns:1fr}}
+
+  /* CHAPTER */
+  .chapter{margin-top:128px;padding-top:26px;border-top:1.5px solid var(--rule)}
+  .chapter-in{display:grid;grid-template-columns:1fr 1.4fr;gap:40px;align-items:start}
+  .chapter h2{font-size:clamp(34px,5vw,58px);letter-spacing:-.03em}
+  .chapter .intro{font-size:16px;color:var(--grey);line-height:1.7;max-width:52ch;padding-top:8px}
+  @media(max-width:860px){.chapter-in{grid-template-columns:1fr;gap:18px}}
+
+  /* ENTRY */
+  .entry{display:grid;grid-template-columns:1fr 1fr;gap:62px;align-items:center;
+         padding:74px 0;border-bottom:1px solid var(--hair)}
+  .entry:last-of-type{border-bottom:0}
+  .entry.flip .viz{order:2}
+  .viz svg{display:block;width:100%;height:auto}
+  .cap{font:500 11px/1.55 var(--mono);color:var(--grey);margin-top:16px;
+       padding-top:14px;border-top:1px solid var(--line)}
+  .no{font:500 10px/1 var(--mono);letter-spacing:.24em;color:var(--grey-2);display:block;margin-bottom:18px}
+  .entry h3{font-size:clamp(27px,3.2vw,38px);letter-spacing:-.025em;margin-bottom:14px}
+  .one{font-family:var(--serif);font-size:19px;line-height:1.5;color:var(--ink-2);margin-bottom:26px}
+  .stat{border-top:1px solid var(--rule);padding-top:18px;margin-bottom:24px}
+  .stat .big{font-family:var(--serif);font-size:44px;line-height:1;letter-spacing:-.035em;display:block}
+  .stat .exp{font-size:14.5px;color:var(--grey);line-height:1.6;margin-top:10px;max-width:38ch;display:block}
+  .bodyc{font-size:15px;color:var(--grey);line-height:1.7;margin-bottom:22px;max-width:44ch}
+  .lab{font:500 9.5px/1 var(--mono);letter-spacing:.22em;text-transform:uppercase;
+       color:var(--grey-2);display:block;margin-bottom:8px}
+  .why{font-size:15px;line-height:1.7;color:var(--ink-2);margin-bottom:24px;max-width:44ch;
+       border-left:2px solid var(--line);padding-left:16px}
+  .bodyc b{color:var(--ink);font-weight:600}
+  .meta{display:flex;flex-wrap:wrap;gap:0 18px;font:500 10.5px/1.9 var(--mono);
+        letter-spacing:.1em;text-transform:uppercase;color:var(--grey-2);margin-bottom:22px}
+  .go{display:flex;gap:26px;font:500 11px/1 var(--mono);letter-spacing:.14em;text-transform:uppercase}
+  .go a{border-bottom:1px solid var(--ink);padding-bottom:5px}
+  .go a:hover{color:var(--grey);border-color:var(--grey)}
+  @media(max-width:860px){.entry{grid-template-columns:1fr;gap:34px;padding:52px 0}
+    .entry.flip .viz{order:0}}
+
+  /* SYSTEM */
+  .system{display:grid;grid-template-columns:1fr 1fr;gap:62px;align-items:center;
+          padding:64px 0;border-bottom:1px solid var(--hair)}
+  .system:last-of-type{border-bottom:0}
+  .system.flip .viz{order:2}
+  .system .viz svg{border:1px solid var(--line)}
+  .system h3{font-size:clamp(23px,2.6vw,31px);letter-spacing:-.02em;margin-bottom:8px}
+  .where{font:500 11px/1 var(--mono);letter-spacing:.12em;text-transform:uppercase;
+         color:var(--grey);margin-bottom:22px;display:block}
+  .system p{font-size:15px;color:var(--grey);line-height:1.7;margin-bottom:24px;max-width:44ch}
+  .system p b{color:var(--ink);font-weight:600}
+  @media(max-width:860px){.system{grid-template-columns:1fr;gap:30px;padding:48px 0}
+    .system.flip .viz{order:0}}
+
+  /* ROLES */
+  .role{display:grid;grid-template-columns:230px 1fr;gap:44px;padding:34px 0;border-top:1px solid var(--hair)}
+  .role:first-child{border-top:1px solid var(--rule)}
+  .role .date{font:500 11px/1.7 var(--mono);letter-spacing:.06em;color:var(--grey)}
+  .role .date em{display:block;font-style:normal;color:var(--grey-2);letter-spacing:.16em;
+                 text-transform:uppercase;font-size:9.5px;margin-top:9px}
+  .role h3{font-size:22px;letter-spacing:-.018em;margin-bottom:4px}
+  .role .at{font-size:14.5px;color:var(--grey);margin-bottom:16px}
+  .role ul{margin:0;padding:0;list-style:none}
+  .role li{font-size:15px;line-height:1.65;padding-left:20px;position:relative;margin-bottom:7px;color:var(--ink-2)}
+  .role li::before{content:"";position:absolute;left:0;top:11px;width:9px;height:1px;background:var(--grey-2)}
+  @media(max-width:860px){.role{grid-template-columns:1fr;gap:14px}}
+
+  /* DUO */
+  .duo{display:grid;grid-template-columns:1fr 1fr;gap:72px;margin-top:56px}
+  .duo h4{font-family:var(--serif);font-weight:400;font-size:25px;letter-spacing:-.02em;
+          margin:0;padding-bottom:16px;border-bottom:1px solid var(--rule)}
+  .hint{font-size:13.5px;color:var(--grey);margin:14px 0 20px;line-height:1.6}
+  .duo ul{list-style:none;margin:0;padding:0}
+  .duo li{font-size:14.5px;padding:9px 0;border-bottom:1px solid var(--hair);color:var(--ink-2)}
+  .duo li:last-child{border-bottom:0}
+  @media(max-width:860px){.duo{grid-template-columns:1fr;gap:44px}}
+  .entryline{display:grid;grid-template-columns:120px 1fr;gap:20px;padding:15px 0;border-bottom:1px solid var(--hair)}
+  .entryline:last-child{border-bottom:0}
+  .entryline .y{font:500 11px/1.8 var(--mono);letter-spacing:.06em;color:var(--grey)}
+  .entryline b{display:block;font-size:15.5px;font-weight:600;line-height:1.45}
+  .entryline span{font-size:13.5px;color:var(--grey);line-height:1.55}
+
+  /* CROSSLINK */
+  .cross{margin-top:96px;border:1px solid var(--ink);padding:34px 38px;
+         display:flex;justify-content:space-between;align-items:center;gap:28px;flex-wrap:wrap}
+  .cross .t{font-family:var(--serif);font-size:23px;letter-spacing:-.02em;margin-bottom:6px}
+  .cross .s{font-size:14.5px;color:var(--grey);max-width:56ch}
+  .cross a.b{font:500 11px/1 var(--mono);letter-spacing:.16em;text-transform:uppercase;
+             border:1px solid var(--ink);padding:16px 24px;white-space:nowrap}
+  .cross a.b:hover{background:var(--hair)}
+
+  /* CONTACT */
+  .contact{margin-top:128px;padding:56px 0 0;border-top:1.5px solid var(--rule)}
+  .contact h2{font-size:clamp(34px,5vw,58px);letter-spacing:-.03em;margin-bottom:34px}
+  .clist{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--line)}
+  .clist a{padding:24px 24px 24px 0;border-right:1px solid var(--line);display:block}
+  .clist a:last-child{border-right:0}
+  .clist .t{font:500 10px/1 var(--mono);letter-spacing:.2em;text-transform:uppercase;
+            color:var(--grey-2);display:block;margin-bottom:10px}
+  .clist .v{font-family:var(--serif);font-size:19px;letter-spacing:-.01em;word-break:break-word}
+  .clist a:hover .v{color:var(--grey)}
+  @media(max-width:720px){.clist{grid-template-columns:1fr}
+    .clist a{border-right:0;border-bottom:1px solid var(--line);padding:20px 0}}
+  footer{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;padding:44px 0;
+         font:500 10.5px/1 var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--grey-2)}
+</style>
+</head>
+<body>
+<nav class="nav">
+  <div class="wrap nav-in">
+    <a class="me" href="#top">Halimat H. Fakorede</a>
+    <ul>
+      <li><a href="#systems">Systems</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#background">Background</a></li>
+    </ul>
+    <a class="me" href="#contact">Contact</a>
+  </div>
+</nav>
+<main id="top">
+<div class="wrap">
+
+  <header class="hero">
+    <figure class="portrait">
+      <img src="data:image/jpeg;base64,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" alt="Halimat H. Fakorede" width="320" height="320">
+    </figure>
+
+    <div class="hero-top">
+      <h1>Halimat H.<br>Fakorede</h1>
+      <p class="sub">Data analysis, agriculture and business operations.</p>
+      <p class="lede">I use data to understand problems in agriculture, markets and business, and turn the findings into practical decisions.</p>
+    </div>
+
+    <div class="actions">
+      <a href="index.html"><i>&rarr;</i> Data &amp; analysis</a>
+      <a class="on" href="#systems">Operations &amp; systems</a>
+    </div>
+
+  </header>
+
+  <section class="chapter" id="systems">
+    <div class="chapter-in">
+      <h2>Operations and Systems</h2>
+      <p class="intro">Who I have worked for, what I was responsible for, and what changed.</p>
+    </div>
+  </section>
+
+  <article class="system">
+    <div class="viz">
+      <svg viewBox="0 0 420 210" role="img" aria-label="Vendor coordination across two businesses in one group">
+        <rect x="0" y="0" width="420" height="210" fill="#fff"/>
+        <rect x="150" y="86" width="120" height="40" fill="#a8492a"/>
+        <text x="210" y="103" font-size="9.5" font-family="monospace" fill="#fff" text-anchor="middle">OPERATIONS</text>
+        <text x="210" y="116" font-size="9.5" font-family="monospace" fill="#fff" text-anchor="middle">ASSISTANT</text>
+        <rect x="24" y="26" width="128" height="34" fill="#fff" stroke="#0a0a0a"/>
+        <text x="88" y="47" font-size="9" font-family="monospace" fill="#0a0a0a" text-anchor="middle">CRUX NXTION EVENTS</text>
+        <rect x="24" y="152" width="128" height="34" fill="#fff" stroke="#0a0a0a"/>
+        <text x="88" y="166" font-size="9" font-family="monospace" fill="#0a0a0a" text-anchor="middle">NXTION FOOD</text>
+        <text x="88" y="178" font-size="9" font-family="monospace" fill="#0a0a0a" text-anchor="middle">MARKET</text>
+        <path d="M152 43 C 200 43, 190 86, 205 86" fill="none" stroke="#a6a6a6" stroke-width="1.4"/>
+        <path d="M152 169 C 200 169, 190 126, 205 126" fill="none" stroke="#a6a6a6" stroke-width="1.4"/>
+        <rect x="292" y="20" width="104" height="26" fill="#f7f7f7" stroke="#ededed"/>
+        <text x="344" y="37" font-size="8.5" font-family="monospace" fill="#707070" text-anchor="middle">VENDOR</text>
+        <rect x="292" y="56" width="104" height="26" fill="#f7f7f7" stroke="#ededed"/>
+        <text x="344" y="73" font-size="8.5" font-family="monospace" fill="#707070" text-anchor="middle">VENDOR</text>
+        <rect x="292" y="92" width="104" height="26" fill="#f7f7f7" stroke="#ededed"/>
+        <text x="344" y="109" font-size="8.5" font-family="monospace" fill="#707070" text-anchor="middle">VENDOR</text>
+        <rect x="292" y="128" width="104" height="26" fill="#f7f7f7" stroke="#ededed"/>
+        <text x="344" y="145" font-size="8.5" font-family="monospace" fill="#707070" text-anchor="middle">VENDOR</text>
+        <rect x="292" y="164" width="104" height="26" fill="#f7f7f7" stroke="#ededed"/>
+        <text x="344" y="181" font-size="8.5" font-family="monospace" fill="#707070" text-anchor="middle">VENDOR</text>
+        <line x1="270" y1="106" x2="292" y2="33" stroke="#dcdcdc"/>
+        <line x1="270" y1="106" x2="292" y2="69" stroke="#dcdcdc"/>
+        <line x1="270" y1="106" x2="292" y2="105" stroke="#dcdcdc"/>
+        <line x1="270" y1="106" x2="292" y2="141" stroke="#dcdcdc"/>
+        <line x1="270" y1="106" x2="292" y2="177" stroke="#dcdcdc"/>
+      </svg></div>
+    <div>
+      <span class="no">01 / Two businesses at once</span>
+      <h3>Crux Nxtion Group</h3>
+      <span class="where">United Kingdom, remote</span>
+      <p>Crux Nxtion Events and Nxtion Food Market are two separate businesses under the same
+      group, and I worked across both. Most of my time went on the suppliers: placing orders,
+      answering their questions, and chasing anything that had gone quiet.</p>
+      <p style="margin-top:-8px">I also looked after the product information on the food market
+      website. What each item is, what it costs, and whether it is in stock. When that is wrong a
+      customer orders something that is not there, so it has to be right every day.</p>
+      <div class="meta"><span>Supplier communication</span><span>Coordination</span><span>Product information</span><span>Remote, UK</span></div>
+    </div>
+  </article>
+
+  <article class="system flip">
+    <div class="viz">
+      <svg viewBox="0 0 420 210" role="img" aria-label="Sign up funnel showing where students dropped off, and enrolment rising after">
+        <text x="24" y="26" font-size="9.5" font-family="monospace" fill="#a6a6a6">WHERE PEOPLE DROPPED OFF</text>
+        <rect x="24" y="38" width="196" height="24" fill="#0a0a0a"/>
+        <text x="32" y="54" font-size="9.5" font-family="monospace" fill="#fff">VISITED</text>
+        <rect x="24" y="68" width="150" height="24" fill="#5c5c5c"/>
+        <text x="32" y="84" font-size="9.5" font-family="monospace" fill="#fff">STARTED SIGN UP</text>
+        <rect x="24" y="98" width="96" height="24" fill="#bdbdbd"/>
+        <text x="32" y="114" font-size="9.5" font-family="monospace" fill="#fff">FINISHED</text>
+        <rect x="24" y="128" width="72" height="24" fill="#a8492a"/>
+        <text x="32" y="144" font-size="9.5" font-family="monospace" fill="#fff">ENROLLED</text>
+        <line x1="150" y1="68" x2="150" y2="122" stroke="#a8492a" stroke-dasharray="3 3"/>
+        <text x="158" y="86" font-size="9" font-family="monospace" fill="#a8492a">the gap</text>
+        <text x="158" y="99" font-size="9" font-family="monospace" fill="#a8492a">I found</text>
+        <line x1="24" y1="168" x2="396" y2="168" stroke="#ededed"/>
+        <text x="24" y="186" font-size="10.5" font-family="monospace" fill="#707070">ENROLMENT +15%</text>
+        <text x="200" y="186" font-size="10.5" font-family="monospace" fill="#707070">SITE VISITS +20%</text>
+      </svg></div>
+    <div>
+      <span class="no">02 / Working out what the numbers meant</span>
+      <h3>Craftudy</h3>
+      <span class="where">Online learning platform</span>
+      <p>I went through the sign up numbers to trace where people gave up between landing on the
+      site and finishing a sign up, and which channels were actually bringing students in rather
+      than just traffic.</p>
+      <p style="margin-top:-8px">Enrolment went up 15% and site visits went up 20% over the period.</p>
+      <div class="meta"><span>Sign up analysis</span><span>Drop off</span><span>Channel performance</span></div>
+    </div>
+  </article>
+
+  <article class="system">
+    <div class="viz">
+      <svg viewBox="0 0 420 210" role="img" aria-label="Audience growing to 244 percent over time">
+        <line x1="40" y1="24" x2="40" y2="168" stroke="#dcdcdc"/>
+        <line x1="40" y1="168" x2="396" y2="168" stroke="#0a0a0a" stroke-width="1.2"/>
+        <line x1="40" y1="128" x2="396" y2="128" stroke="#ededed"/>
+        <line x1="40" y1="88" x2="396" y2="88" stroke="#ededed"/>
+        <line x1="40" y1="48" x2="396" y2="48" stroke="#ededed"/>
+        <polyline points="48,156 96,150 144,140 192,118 240,94 288,72 336,50 390,32"
+                  fill="none" stroke="#a8492a" stroke-width="2.6"/>
+        <circle cx="390" cy="32" r="4.5" fill="#a8492a"/>
+        <text x="300" y="24" font-size="13" font-family="monospace" fill="#a8492a">+244%</text>
+        <g font-family="monospace" font-size="9" fill="#a6a6a6">
+          <text x="48" y="186">JUN 2022</text>
+          <text x="396" y="186" text-anchor="end">FEB 2024</text>
+        </g>
+        <text x="48" y="140" font-size="9" font-family="monospace" fill="#707070">tracking set up</text>
+        <line x1="96" y1="146" x2="96" y2="168" stroke="#dcdcdc" stroke-dasharray="3 3"/>
+      </svg></div>
+    <div>
+      <span class="no">03 / Keeping a team to deadline</span>
+      <h3>Will to Lead</h3>
+      <span class="where">United Kingdom, remote</span>
+      <p>I coordinated the people making the content. Briefing them on what was needed, chasing
+      what had not come in, and keeping everyone to the deadline. Nobody was in the same room and
+      most were not in the same country.</p>
+      <p style="margin-top:-8px">The audience grew by 244% over the period. I also supported the
+      founder directly with her diary, documents and inbox.</p>
+      <div class="meta"><span>Coordination</span><span>Deadlines</span><span>Remote team</span><span>Executive support</span></div>
+    </div>
+  </article>
+
+  <article class="system flip">
+    <div class="viz">
+      <svg viewBox="0 0 420 210" role="img" aria-label="Online store with product grid and four wholesale price tiers">
+        <rect x="0" y="0" width="420" height="210" fill="#fff"/>
+        <rect x="0" y="0" width="420" height="28" fill="#f7f7f7"/>
+        <line x1="0" y1="28" x2="420" y2="28" stroke="#ededed"/>
+        <circle cx="18" cy="14" r="3.4" fill="#dcdcdc"/><circle cx="30" cy="14" r="3.4" fill="#dcdcdc"/><circle cx="42" cy="14" r="3.4" fill="#dcdcdc"/>
+        <rect x="58" y="7" width="216" height="14" fill="#fff" stroke="#ededed"/>
+        <text x="65" y="17" font-size="8.5" font-family="monospace" fill="#a6a6a6">opulentceramics.com</text>
+        <rect x="370" y="7" width="34" height="14" fill="#0a0a0a"/>
+        <text x="377" y="17" font-size="7.5" font-family="monospace" fill="#fff">CART</text>
+        <rect x="24" y="44" width="140" height="10" fill="#0a0a0a"/>
+        <rect x="24" y="62" width="96" height="5" fill="#dcdcdc"/>
+        <rect x="24" y="80" width="88" height="72" fill="#fff" stroke="#a8492a" stroke-width="1.4"/>
+        <rect x="34" y="90" width="68" height="36" fill="#f0e2dc"/>
+        <rect x="34" y="132" width="40" height="5" fill="#dcdcdc"/>
+        <text x="34" y="147" font-size="9" font-family="monospace" fill="#a8492a">N3,000</text>
+        <rect x="120" y="80" width="88" height="72" fill="#fff" stroke="#ededed"/>
+        <rect x="130" y="90" width="68" height="36" fill="#f5f5f5"/>
+        <rect x="130" y="132" width="46" height="5" fill="#dcdcdc"/>
+        <text x="130" y="147" font-size="9" font-family="monospace" fill="#a6a6a6">N17,400</text>
+        <rect x="216" y="80" width="88" height="72" fill="#fff" stroke="#ededed"/>
+        <rect x="226" y="90" width="68" height="36" fill="#f5f5f5"/>
+        <rect x="226" y="132" width="44" height="5" fill="#dcdcdc"/>
+        <text x="226" y="147" font-size="9" font-family="monospace" fill="#a6a6a6">N65,000</text>
+        <rect x="312" y="80" width="88" height="72" fill="#fff" stroke="#ededed"/>
+        <rect x="322" y="90" width="68" height="36" fill="#f5f5f5"/>
+        <rect x="322" y="132" width="52" height="5" fill="#dcdcdc"/>
+        <text x="322" y="147" font-size="9" font-family="monospace" fill="#a6a6a6">N250,000</text>
+        <rect x="24" y="170" width="176" height="20" fill="#0a0a0a"/>
+        <text x="34" y="184" font-size="9" font-family="monospace" fill="#fff">BECOME A TRADE PARTNER</text>
+      </svg></div>
+    <div>
+      <span class="no">04 / The systems a business sells through</span>
+      <h3>Opulent House of Ceramics</h3>
+      <span class="where">Nigeria</span>
+      <p>I brought structure to how the business runs, and I built and still maintain the two
+      websites it sells and speaks through.</p>
+      <p style="margin-top:-8px"><b>opulentceramics.com</b> is the shop. The product range, four
+      wholesale price levels from a single 800g pack up to 100 pack orders, the checkout, a route
+      for shops that want to stock and resell it, and the photo gallery that shows the work.</p>
+      <p style="margin-top:-8px"><b>funmilolabellonaire.com</b> is the founder's own platform.
+      Her story, her podcast which also goes out on YouTube and Spotify, her book, an events page,
+      a monthly letter and a shop. All in one place instead of spread across different sites.</p>
+      <div class="meta"><span>WordPress</span><span>WooCommerce</span><span>Tiered pricing</span><span>Multi page build</span></div>
+      <div class="go"><a href="https://opulentceramics.com">Visit the shop</a><a href="https://funmilolabellonaire.com">Visit the platform</a></div>
+    </div>
+  </article>
+
+  <article class="system">
+    <div class="viz">
+      <svg viewBox="0 0 420 210" role="img" aria-label="Two academies where I taught operations and virtual assistance">
+        <rect x="24" y="30" width="170" height="150" fill="#fff" stroke="#0a0a0a"/>
+        <rect x="24" y="30" width="170" height="30" fill="#a8492a"/>
+        <text x="36" y="50" font-size="9.5" font-family="monospace" fill="#fff">CIRVEE ACADEMY</text>
+        <text x="36" y="80" font-size="9.5" font-family="monospace" fill="#0a0a0a">VIRTUAL ASSISTANCE</text>
+        <g fill="#dcdcdc">
+          <circle cx="44" cy="106" r="8"/><circle cx="70" cy="106" r="8"/><circle cx="96" cy="106" r="8"/>
+          <circle cx="122" cy="106" r="8"/><circle cx="148" cy="106" r="8"/><circle cx="174" cy="106" r="8"/>
+          <circle cx="44" cy="132" r="8"/><circle cx="70" cy="132" r="8"/><circle cx="96" cy="132" r="8"/>
+          <circle cx="122" cy="132" r="8"/><circle cx="148" cy="132" r="8"/><circle cx="174" cy="132" r="8"/>
+        </g>
+        <text x="36" y="168" font-size="9" font-family="monospace" fill="#a6a6a6">NOV 2024 - JUL 2025</text>
+        <rect x="226" y="30" width="170" height="150" fill="#fff" stroke="#0a0a0a"/>
+        <rect x="226" y="30" width="170" height="30" fill="#a8492a"/>
+        <text x="238" y="50" font-size="9.5" font-family="monospace" fill="#fff">NEXT SWITCH ACADEMY</text>
+        <text x="238" y="80" font-size="9.5" font-family="monospace" fill="#0a0a0a">BUSINESS OPERATIONS</text>
+        <g fill="#dcdcdc">
+          <circle cx="246" cy="106" r="8"/><circle cx="272" cy="106" r="8"/><circle cx="298" cy="106" r="8"/>
+          <circle cx="324" cy="106" r="8"/><circle cx="350" cy="106" r="8"/><circle cx="376" cy="106" r="8"/>
+          <circle cx="246" cy="132" r="8"/><circle cx="272" cy="132" r="8"/><circle cx="298" cy="132" r="8"/>
+          <circle cx="324" cy="132" r="8"/><circle cx="350" cy="132" r="8"/><circle cx="376" cy="132" r="8"/>
+        </g>
+        <text x="238" y="168" font-size="9" font-family="monospace" fill="#a6a6a6">JUN 2025 - JUN 2026</text>
+      </svg></div>
+    <div>
+      <span class="no">05 / Teaching it</span>
+      <h3>Cirvee Academy and Next Switch Academy</h3>
+      <span class="where">Nigeria</span>
+      <p>Two academies brought me in to teach the work I do. At Cirvee I taught virtual assistance,
+      and at Next Switch I taught remote business operations. Between them I covered setting up a
+      process, keeping records, the tools teams use, and how to work well with people you never
+      meet in person.</p>
+      <p style="margin-top:-8px">I taught both while still doing the job myself, so nothing I
+      taught was out of date.</p>
+      <div class="meta"><span>Training</span><span>Curriculum</span><span>Process</span><span>Remote working</span></div>
+    </div>
+  </article>
+
+
+  <section class="chapter" id="experience">
+    <div class="chapter-in">
+      <h2>Experience</h2>
+    </div>
+  </section>
+  <div style="margin-top:56px">
+    <div class="role">
+      <div class="date">Jul 2024 &ndash; Jul 2026<em>Remote, UK</em></div>
+      <div>
+        <h3>Operations Assistant</h3>
+        <p class="at">Crux Nxtion Group of Companies, United Kingdom</p>
+        <ul>
+          <li>Supported day to day operations across two businesses in the group, Crux Nxtion Events and Nxtion Food Market.</li>
+          <li>Kept product details and listings current on the Nxtion Food Market website.</li>
+          <li>Managed vendor communications for both businesses, keeping orders, queries and follow ups moving.</li>
+          <li>Coordinated between the UK team and people working in other time zones.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="role">
+      <div class="date">Jun 2025 &ndash; Jun 2026<em>Contract</em></div>
+      <div>
+        <h3>Tutor, Remote Business Operations</h3>
+        <p class="at">Next Switch Academy</p>
+        <ul>
+          <li>Taught remote business operations to adult students moving into the field.</li>
+          <li>Covered process setup, reporting, tools, and the working habits remote employers expect.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="role">
+      <div class="date">Nov 2024 &ndash; Jul 2025<em>Contract</em></div>
+      <div>
+        <h3>Tutor, Virtual Assistance</h3>
+        <p class="at">Cirvee Academy, Ibadan</p>
+        <ul>
+          <li>Taught the practical side of the role: scheduling, inbox and document handling, client communication and reporting.</li>
+          <li>Ran the programme alongside my own operations work, which kept the material current.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="role">
+      <div class="date">Feb 2024 &ndash; present<em>Contract</em></div>
+      <div>
+        <h3>Consultant, Operations and Data Systems</h3>
+        <p class="at">Opulent House of Ceramics Ltd, Nigeria</p>
+        <ul>
+          <li>Brought structure to how the business runs, setting up the routines and records it did not have before.</li>
+          <li>Built and maintain the online store, including the product range, wholesale price levels and checkout.</li>
+          <li>Set up the photo gallery on the site that shows the work.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="role">
+      <div class="date">Apr 2024 &ndash; Jun 2025<em>Part time</em></div>
+      <div>
+        <h3>Operations Assistant</h3>
+        <p class="at">Craftudy, online learning platform</p>
+        <ul>
+          <li>Enrolment up 15% and site traffic up 20% over the period.</li>
+          <li>Went through the sign up data to find where people were dropping off and which channels actually converted.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="role">
+      <div class="date">Jun 2022 &ndash; Feb 2024<em>Remote, UK</em></div>
+      <div>
+        <h3>Head of Media Operations and Virtual Assistant</h3>
+        <p class="at">Will to Lead, United Kingdom</p>
+        <ul>
+          <li>Coordinated the contributors producing the content, briefing them, chasing what was outstanding and holding the deadline.</li>
+          <li>Worked with a team spread across different countries, none of them in the same place.</li>
+          <li>The audience grew by 244% over the period.</li>
+          <li>Supported the founder with scheduling, documents and inbox management.</li>
+        </ul>
+      </div>
+    </div></div>
+
+
+
+  <section class="chapter" id="skills">
+    <div class="chapter-in">
+      <h2>Skills</h2>
+      <p class="intro">What I actually use.</p>
+    </div>
+  </section>
+  <div class="duo">
+    <div>
+      <h4>Operations</h4>
+      <p class="hint">What I use to keep a business running and its records straight.</p>
+      <ul>
+      <li>Vendor and supplier communication</li>
+      <li>Product listings and catalogue upkeep</li>
+      <li>Reporting and performance tracking</li>
+      <li>Records, routines and process documentation</li>
+      <li>Advanced Excel, pivots and lookups</li>
+      <li>WordPress and WooCommerce builds</li>
+      <li>Google Workspace</li>
+      <li>Diary, inbox and document management</li>
+      <li>Cross time zone coordination</li>
+      <li>Training and onboarding others</li></ul>
+    </div>
+    <div>
+      <h4>Analysis</h4>
+      <p class="hint">The technical half. Useful in an operations role for reading the numbers
+      rather than waiting on someone else to.</p>
+      <ul>
+      <li>Python, pandas, NumPy</li>
+      <li>scikit-learn, statsmodels, arch</li>
+      <li>SQL</li>
+      <li>Regression, classification, clustering</li>
+      <li>Time series, forecasting, volatility</li>
+      <li>Scenario and what-if modelling</li>
+      <li>Holdout and walk forward validation</li>
+      <li>Benchmarking against a naive baseline</li>
+      <li>Streamlit dashboards, FastAPI endpoints</li>
+      <li>Git and GitHub</li></ul>
+    </div>
+  </div>
+
+
+  <div class="cross">
+    <div>
+      <div class="t">Looking for the data side?</div>
+      <div class="s">Four analysis projects built on open public data, each with the code and a
+      dashboard you can open.</div>
+    </div>
+    <a class="b" href="index.html">See my work in data &rarr;</a>
+  </div>
+
+
+  <section class="chapter" id="background">
+    <div class="chapter-in">
+      <h2>Background</h2>
+      <p class="intro">Where I studied and what I have qualified in since.</p>
+    </div>
+  </section>
+
+  <div class="duo">
+    <div>
+      <h4>Study</h4>
+      <div style="margin-top:22px">
+        <div class="entryline"><span class="y">2022</span><div><b>Bachelor of Agriculture, Second Class Upper</b><span>University of Ilorin. CGPA 3.72 out of 5.00.</span></div></div>
+        <div class="entryline"><span class="y">2026</span><div><b>Data Scientist Certification</b><span>DataCamp</span></div></div>
+        <div class="entryline"><span class="y">2025</span><div><b>Applied Data Science Lab</b><span>WorldQuant University</span></div></div>
+        <div class="entryline"><span class="y">In progress</span><div><b>Deep Learning Fundamentals Lab</b><span>WorldQuant University</span></div></div>
+        <div class="entryline"><span class="y">2022</span><div><b>Virtual Assistant Course</b><span>ALX</span></div></div>
+      </div>
+    </div>
+    <div>
+      <h4>Service</h4>
+      <div style="margin-top:22px">
+        <div class="entryline"><span class="y">2024 &ndash; now</span><div><b>Founder, The Growth People Community</b><span>A learning community for early career people. Wrote and teach the Digital Work Ready course that came out of it.</span></div></div>
+        <div class="entryline"><span class="y">2024 &ndash; now</span><div><b>Creator, Digital Work Ready</b><span>A short course that takes people with no office background to their first remote role.</span></div></div>
+        <div class="entryline"><span class="y">2023 &ndash; 2024</span><div><b>National Youth Service, completed</b><span>Cross River State.</span></div></div>
+      </div>
+    </div>
+  </div>
+
+  <section class="contact" id="contact">
+    <h2>Get in touch</h2>
+    <div class="clist">
+      <a href="/cdn-cgi/l/email-protection#3e585f55514c5b5a5b565f5257535f4a0f7e59535f5752105d5153"><span class="t">Email</span><span class="v"><span class="__cf_email__" data-cfemail="4422252f2b362120212c25282d29253075042329252d286a272b29">[email&#160;protected]</span></span></a>
+      <a href="https://linkedin.com/in/halimatfakorede"><span class="t">LinkedIn</span><span class="v">/in/halimatfakorede</span></a>
+      <a href="https://github.com/HalimatFakorede"><span class="t">GitHub</span><span class="v">@HalimatFakorede</span></a>
+    </div>
+  </section>
+
+  <footer>
+    <span>Halimat H. Fakorede</span>
+    <span>Lagos, Nigeria &nbsp;/&nbsp; Open to remote and relocation</span>
+  </footer>
+
+</div>
+</main>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>(function(){function c(){var b=a.contentDocument||(a.contentWindow&&a.contentWindow.document);if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a4559406af538eab',t:'MTc5MTEzMTUwMA=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
